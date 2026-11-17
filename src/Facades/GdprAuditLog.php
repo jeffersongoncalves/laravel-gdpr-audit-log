@@ -2,15 +2,21 @@
 
 namespace JeffersonGoncalves\GdprAuditLog\Facades;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
+use JeffersonGoncalves\GdprAuditLog\AuditLogger;
+use JeffersonGoncalves\GdprAuditLog\Models\AuditLog;
 
 /**
- * @see \JeffersonGoncalves\GdprAuditLog\GdprAuditLog
+ * @method static AuditLog record(string $action, ?Model $subject = null, list<string> $columns = [], ?string $purpose = null, array<string, mixed> $metadata = [], ?Model $actor = null)
+ * @method static int|null verify()
+ *
+ * @see AuditLogger
  */
 class GdprAuditLog extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return 'laravel-gdpr-audit-log';
+        return AuditLogger::class;
     }
 }
